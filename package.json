@@ -1,0 +1,24 @@
+{
+  "name": "codeday-present",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@srnd/topocons": "^1.1.2",
+    "apollo-cache-inmemory": "^1.6.3",
+    "apollo-client": "^2.6.4",
+    "apollo-link-prismic": "^1.0.4",
+    "dotenv": "^8.1.0",
+    "graphql": "^14.5.8",
+    "graphql-tag": "^2.10.1",
+    "next": "9.1.1",
+    "react": "16.10.2",
+    "react-dom": "16.10.2",
+    "react-youtube": "^7.9.0",
+    "styled-components": "^4.4.0"
+  }
+}

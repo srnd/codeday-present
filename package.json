@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
     "@srnd/topocons": "^1.1.2",
@@ -19,6 +19,7 @@
     "react": "16.10.2",
     "react-dom": "16.10.2",
     "react-youtube": "^7.9.0",
-    "styled-components": "^4.4.0"
+    "styled-components": "^4.4.0",
+    "superagent": "^5.1.0"
   }
 }

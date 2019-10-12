@@ -9,5 +9,5 @@ module.exports = {
     }
 
     return config
-  }
+  }, port: 8001
 }

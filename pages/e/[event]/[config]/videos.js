@@ -6,15 +6,9 @@ import Srnd from '../../../../server/srndApi';
 import { parseCode } from '../../../../components/settings';
 import Deck from '../../../../components/screen/deck';
 import {
-  Title,
   Video,
   VideoSponsors,
-  CreateCode,
-  Judging,
-  Conduct,
-  Schedule,
-  Sponsors,
-  Pitches,
+  Black,
 } from '../../../../components/kickoff';
 
 export default withRouter(class Index extends React.Component {
@@ -38,18 +32,13 @@ export default withRouter(class Index extends React.Component {
     return (
       <div>
         <Head>
-          <title>{`${event.name} Kickoff`}</title>
+          <title>{`${event.name} Videos`}</title>
         </Head>
         <Deck event={event} config={config} globalSponsors={globalSponsors}>
-          <Title />
+          <Black />
           <Video />
           <VideoSponsors />
-          <CreateCode />
-          <Judging />
-          <Conduct />
-          <Schedule />
-          <Sponsors />
-          <Pitches />
+          <Black />
         </Deck>
       </div>
     );

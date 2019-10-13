@@ -7,7 +7,7 @@ const EventBox = styled.li`
 `;
 
 export default class Upcoming extends React.Component {
-  propTypes = {
+  static propTypes = {
     upcomingEvents: PropTypes.arrayOf(PropTypes.object).isRequired,
   }
 

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Slide } from '../screen';
 import { Provider as ScheduleProvider, Upcoming } from './schedule';
+import NowPlaying from './now-playing';
 
 export default class Live extends React.Component {
   static propTypes = {
@@ -15,6 +16,7 @@ export default class Live extends React.Component {
         <ScheduleProvider event={event}>
           <Upcoming />
         </ScheduleProvider>
+        <NowPlaying />
       </Slide>
     );
   }

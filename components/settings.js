@@ -9,12 +9,9 @@ export default class Settings extends React.Component {
     onChange: PropTypes.func.isRequired,
   }
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      ssid: '',
-      pass: '',
-    };
+  state = {
+    ssid: '',
+    pass: '',
   }
 
   changeCode(newState) {

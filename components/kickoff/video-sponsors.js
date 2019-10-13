@@ -52,13 +52,10 @@ export default class VideoSponsors extends React.Component {
     volume: 100,
   }
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      visibleSponsorIndex: 0,
-      play: null,
-      error: null,
-    };
+  state = {
+    visibleSponsorIndex: 0,
+    play: null,
+    error: null,
   }
 
   componentDidMount() {

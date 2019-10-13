@@ -24,14 +24,15 @@ export default class Deck extends React.Component {
     children: PropTypes.arrayOf(PropTypes.element).isRequired,
   }
 
+  state = {
+    currentSlide: 0,
+    volume: 100,
+  }
+
   constructor(props) {
     super(props);
     this.onKeyDown = this.onKeyDown.bind(this);
     this.navigate = this.navigate.bind(this);
-    this.state = {
-      currentSlide: 0,
-      volume: 100,
-    };
   }
 
   componentDidMount() {

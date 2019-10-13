@@ -26,6 +26,7 @@ export default withRouter(class Index extends React.Component {
         <ul>
           <li><Link href={`/e/${event.id}/${router.query.config}/kickoff`}>Kickoff Full Deck</Link></li>
           <li><Link href={`/e/${event.id}/${router.query.config}/videos`}>Kickoff Videos Only</Link></li>
+          <li><Link href={`/e/${event.id}/${router.query.config}/live`}>Live Schedule</Link></li>
         </ul>
       </div>
     );

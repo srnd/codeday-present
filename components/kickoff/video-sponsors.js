@@ -129,7 +129,7 @@ export default class VideoSponsors extends React.Component {
       <Slide padding="0" bg="#000">
         <SponsorLogoOverlay>
           {error && <Text>Error: {error} (is the internet down/filtered?)</Text>}
-          {!error && play && sponsor.logo && <img src={sponsor.logo} alt={sponsor.name} />}
+          {!error && play && sponsor && sponsor.logo && <img src={sponsor.logo} alt={sponsor.name} />}
           {!error && play === false && this.getSponsors().length > 1 && (
             <Large onClick={() => this.setState({ play: true })} style={{ cursor: 'pointer' }}>
               <Icon.MediaPlay />

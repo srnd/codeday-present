@@ -1,50 +1,41 @@
-import React from 'react'
-import Link from 'next/link'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 export const makeCode = (obj) => Buffer.from(JSON.stringify(obj)).toString('base64');
 export const parseCode = (code) => JSON.parse(Buffer.from(code, 'base64').toString('ascii'));
 
-export class SettingsBlock extends React.Component {
+export default class Settings extends React.Component {
+  static propTypes = {
+    onChange: PropTypes.func.isRequired,
+  }
+
   constructor(props) {
     super(props);
     this.state = {
       ssid: '',
-      pass: ''
-    }
-  }
-
-  render() {
-    return (
-      <div>
-        <h2>Wifi Info</h2>
-        <input type="text" placeholder="SSID" value={this.state.ssid} onChange={(e) => this.changeCode({ssid: e.target.value})} /><br />
-        <input type="text" placeholder="Password" value={this.state.pass} onChange={(e) => this.changeCode({pass: e.target.value})} />
-      </div>
-    );
+      pass: '',
+    };
   }
 
   changeCode(newState) {
-    this.props.onChange(makeCode({...this.state, ...newState}));
-    this.setState(newState);
-  }
-}
+    const { onChange } = this.props;
 
-export default class Settings extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      code: '', 
-    }
+    onChange(makeCode({ ...this.state, ...newState }));
+    this.setState(newState);
   }
 
   render() {
-    const {event} = this.props;
+    const { ssid, pass } = this.state;
 
     return (
-      <>
-        <SettingsBlock onChange={(code) => this.setState({code: code})} />
-        {this.state.code && <Link><a href={`/e/${event.id}/${this.state.code}`}>Launch</a></Link>}
-      </>
+      <div>
+        <h2>Wifi Info</h2>
+        <span>SSID:</span>
+        <input type="text" value={ssid} onChange={(e) => this.changeCode({ ssid: e.target.value })} />
+        <br />
+        <span>Password:</span>
+        <input type="text" value={pass} onChange={(e) => this.changeCode({ pass: e.target.value })} />
+      </div>
     );
   }
 }

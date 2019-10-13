@@ -1,7 +1,8 @@
-import React from 'react'
-import Base from '../base'
-import styled from 'styled-components'
-import Icon from '@srnd/topocons'
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import Icon from '@srnd/topocons';
+import { Slide } from '../screen';
 
 const Title = styled.div`
   text-align: center;
@@ -45,15 +46,25 @@ const WifiInfo = styled.div`
   }
 `;
 
-export default ({ eventInfo, config }) => {
-  return <Base bg='#ff686b'>
-    <Title>CodeDay</Title>
-    <WifiInfo>
-      <h2><span><Icon.Wifi /> wifi</span></h2>
-      <ul>
-        <li><span>ssid</span> {config.ssid}</li>
-        <li><span>pass</span> {config.pass}</li>
-      </ul>
-    </WifiInfo>
-  </Base>
+export default class TitleSlide extends React.Component {
+  static propTypes = {
+    config: PropTypes.object.isRequired,
+  }
+
+  render() {
+    const { config } = this.props;
+
+    return (
+      <Slide bg="#ff686b">
+        <Title>CodeDay</Title>
+        <WifiInfo>
+          <h2><span><Icon.Wifi /> wifi</span></h2>
+          <ul>
+            <li><span>ssid</span> {config.ssid}</li>
+            <li><span>pass</span> {config.pass}</li>
+          </ul>
+        </WifiInfo>
+      </Slide>
+    );
+  }
 }

@@ -38,8 +38,12 @@ export default class NowPlaying extends React.Component {
   }
 
   async updateNowPlaying() {
-    const nowPlaying = (await superagent.get('https://micro.srnd.org/now-playing')).body;
-    this.setState({ nowPlaying });
+    try {
+      const nowPlaying = (await superagent.get('https://micro.srnd.org/now-playing')).body;
+      this.setState({ nowPlaying });
+    } catch (ex) {
+      this.setState({ nowPlaying: null });
+    }
   }
 
   render() {
@@ -47,7 +51,7 @@ export default class NowPlaying extends React.Component {
     return (
       <NowPlayingBlock>
         <NowPlayingAlbum>
-          <img src={nowPlaying.image} alt="" />
+          {nowPlaying && <img src={nowPlaying.image} alt="" />}
         </NowPlayingAlbum>
         <NowPlayingSong>{nowPlaying ? nowPlaying.title : 'Nothing'}</NowPlayingSong>
         <NowPlayingArtist>{nowPlaying ? nowPlaying.artist : 'No One'}</NowPlayingArtist>

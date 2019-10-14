@@ -13,9 +13,10 @@ const SponsorLogoOverlay = styled.div`
   right: 0;
   bottom: 0;
   top: 0;
-  background: rgba(255, 255, 255, 0.4);
   z-index: 1;
   text-align: center;
+  background: radial-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.35) 30%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0));
+  opacity: ${({ backgroundMultiplier }) => backgroundMultiplier};
 
   img, svg {
      height: 20vh;
@@ -37,6 +38,17 @@ const BackgroundVideo = styled.video`
   height: auto;
   z-index: 0; 
   overflow: hidden;
+  opacity: ${({ backgroundMultiplier }) => backgroundMultiplier};
+`;
+
+const Credit = styled.div`
+  position: absolute;
+  bottom: 1vh;
+  left: 1vh;
+  color: #fff;
+  z-index: 10;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9);
+  opacity: 0.5;
 `;
 
 export default class VideoSponsors extends React.Component {
@@ -56,11 +68,12 @@ export default class VideoSponsors extends React.Component {
     visibleSponsorIndex: 0,
     play: null,
     error: null,
+    backgroundMultiplier: 1.0,
   }
 
   componentDidMount() {
     const { nextSlide } = this.props;
-    if (this.getSponsors().length >= 0) {
+    if (this.getSponsors().length <= 1) {
       setTimeout(nextSlide, 1000);
     }
 
@@ -77,14 +90,12 @@ export default class VideoSponsors extends React.Component {
 
     const beepleSrc = 'https://f1.srnd.org/beeple';
     const beepleAvailable = [
-      '24k',
-      'base-10',
-      'built-ee',
-      'cleanroom',
-      'fiber-optical',
       'moonvirus',
+      'base-10',
       'strt',
       'xannn',
+      '24k',
+      'fiber-optical',
     ];
     const beeple = beepleAvailable[rand(event.batchName).intBetween(0, beepleAvailable.length)];
     return {
@@ -96,27 +107,36 @@ export default class VideoSponsors extends React.Component {
 
   getSponsors() {
     const { globalSponsors } = this.props;
-    return globalSponsors.filter((s) => s.audio);
 
-    // TODO(@tylermenezes): Add intro audio
-    /* return [
-      { audio: '' },
+    return [
+      { audio: 'https://f1.srnd.org/sponsor-intro.mp3' },
       ...globalSponsors.filter((s) => s.audio),
-    ]; */
+      {}
+    ];
   }
 
   nextSponsor() {
     const { nextSlide } = this.props;
     const { visibleSponsorIndex } = this.state;
-    if (visibleSponsorIndex + 1 >= this.getSponsors().length) {
-      nextSlide();
-    } else {
-      this.setState({ visibleSponsorIndex: visibleSponsorIndex + 1 });
+    this.setState({ visibleSponsorIndex: visibleSponsorIndex + 1 });
+
+    if (visibleSponsorIndex >= this.getSponsors().length - 2) {
+      // Fade out the audio
+      const fadeDownIntervalId = setInterval(() => {
+        let { backgroundMultiplier } = this.state;
+        backgroundMultiplier *= 0.95;
+        if (backgroundMultiplier <= 0.25) {
+          clearTimeout(fadeDownIntervalId);
+          nextSlide();
+          return;
+        }
+        this.setState({ backgroundMultiplier });
+      }, 50);
     }
   }
 
   render() {
-    const { visibleSponsorIndex, play, error } = this.state;
+    const { visibleSponsorIndex, play, error, backgroundMultiplier } = this.state;
     const { volume } = this.props;
 
     const beeple = this.getBeeple();
@@ -124,7 +144,8 @@ export default class VideoSponsors extends React.Component {
 
     return (
       <Slide padding="0" bg="#000">
-        <SponsorLogoOverlay>
+        <Credit>Loop: BEEPLE / Music: MAVS</Credit>
+        <SponsorLogoOverlay backgroundMultiplier={backgroundMultiplier}>
           {error && <Text>Error: {error} (is the internet down/filtered?)</Text>}
           {!error && play && sponsor && sponsor.logo && <img src={sponsor.logo} alt={sponsor.name} />}
           {!error && play === false && this.getSponsors().length > 1 && (
@@ -133,7 +154,7 @@ export default class VideoSponsors extends React.Component {
             </Large>
           )}
         </SponsorLogoOverlay>
-        <BackgroundVideo poster={beeple.img} autoPlay muted loop>
+        <BackgroundVideo poster={beeple.img} backgroundMultiplier={backgroundMultiplier} autoPlay muted loop>
           <source src={beeple.vid} type="video/mp4" />
         </BackgroundVideo>
 
@@ -147,7 +168,7 @@ export default class VideoSponsors extends React.Component {
         <Sound
           url={beeple.mus}
           loop
-          volume={Math.max(1, Math.ceil(volume * 0.03))}
+          volume={Math.max(1, Math.ceil(volume * 0.03)) * backgroundMultiplier}
           playStatus={play ? Sound.status.PLAYING : Sound.status.STOPPED}
         />
       </Slide>

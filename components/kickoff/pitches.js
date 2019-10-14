@@ -29,7 +29,8 @@ const RainbowSlide = styled(Slide)`
 export default () => (
   <RainbowSlide>
     <Title>Time for pitches!</Title>
-    <Large>You don&apos;t need to know how to build your idea.</Large>
-    <Large>(You must pitch even if you already have a team.)</Large>
+    <Large block>You can pitch anything!</Large>
+    <Large block>You don&apos;t need to know how to build it.</Large>
+    <Large block>(You must pitch even if you already have a team.)</Large>
   </RainbowSlide>
 );

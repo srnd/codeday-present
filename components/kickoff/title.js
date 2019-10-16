@@ -74,8 +74,9 @@ export default class TitleSlide extends React.Component {
           <QrCode
             value={`WIFI:S:${config.ssid};T:${config.pass && 'WPA'};P:${config.pass};;`}
             renderAs="svg"
-            bgColor="transparent"
-            fgColor="#fff"
+            bgColor="white"
+            fgColor="#ff686b"
+            includeMargin
           />
           <section>
             <h2><span><Icon.Wifi /> wifi</span></h2>

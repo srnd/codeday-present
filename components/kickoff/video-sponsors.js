@@ -168,7 +168,7 @@ export default class VideoSponsors extends React.Component {
         <Sound
           url={beeple.mus}
           loop
-          volume={Math.max(1, Math.ceil(volume * 0.03)) * backgroundMultiplier}
+          volume={Math.max(1, Math.ceil(volume * 0.05)) * backgroundMultiplier}
           playStatus={play ? Sound.status.PLAYING : Sound.status.STOPPED}
         />
       </Slide>

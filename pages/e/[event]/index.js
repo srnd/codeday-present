@@ -33,7 +33,7 @@ export default class Index extends React.Component {
 
         <h1>{`${event.name} Settings`}</h1>
         <p>These settings configure your displays.</p>
-        <Settings onChange={(newCode) => this.setState({ code: newCode })} />
+        <Settings event={event} onChange={(newCode) => this.setState({ code: newCode })} />
         {code && <Link href={`/e/${event.id}/${code}`}>Launch</Link>}
       </div>
     );

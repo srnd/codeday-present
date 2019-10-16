@@ -3,20 +3,25 @@ import Link from 'next/link';
 import Head from 'next/head';
 import { withRouter } from 'next/router';
 import PropTypes from 'prop-types';
+import { parseCode } from '../../../../components/settings';
 import Srnd from '../../../../server/srndApi';
 
 export default withRouter(class Index extends React.Component {
   static propTypes = {
     event: PropTypes.object.isRequired,
+    config: PropTypes.object.isRequired,
     router: PropTypes.object.isRequired,
   }
 
   static async getInitialProps(router) {
-    return { event: await Srnd.getEventInfo(router.query.event) };
+    return {
+      event: await Srnd.getEventInfo(router.query.event),
+      config: parseCode(router.query.config),
+    };
   }
 
   render() {
-    const { event, router } = this.props;
+    const { event, config, router } = this.props;
     return (
       <div>
         <Head>
@@ -27,7 +32,7 @@ export default withRouter(class Index extends React.Component {
           <li><Link href={`/e/${event.id}/${router.query.config}/kickoff`}>Kickoff Full Deck</Link></li>
           <li><Link href={`/e/${event.id}/${router.query.config}/videos`}>Kickoff Videos Only</Link></li>
           <li><Link href={`/e/${event.id}/${router.query.config}/live`}>Live Schedule</Link></li>
-          <li><Link href={`/e/${event.id}/${router.query.config}/radio`}>Radio Player</Link></li>
+          { config.radio && <li><Link href={`/e/${event.id}/${router.query.config}/radio`}>Radio Player</Link></li> }
         </ul>
       </div>
     );

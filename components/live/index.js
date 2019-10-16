@@ -7,16 +7,17 @@ import NowPlaying from './now-playing';
 export default class Live extends React.Component {
   static propTypes = {
     event: PropTypes.object.isRequired,
+    config: PropTypes.object.isRequired,
   }
 
   render() {
-    const { event } = this.props;
+    const { event, config } = this.props;
     return (
       <Slide>
         <ScheduleProvider event={event}>
           <Upcoming />
         </ScheduleProvider>
-        <NowPlaying />
+        {config.radio && <NowPlaying />}
       </Slide>
     );
   }

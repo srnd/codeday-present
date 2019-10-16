@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Icon from '@srnd/topocons';
+import QrCode from 'qrcode.react';
 import { Slide } from '../screen';
 
 const Title = styled.div`
@@ -16,6 +17,18 @@ const WifiInfo = styled.div`
   left: 5vw;
   bottom: 5vh;
   color: #fff;
+
+  section, & > svg {
+    display: inline-block;
+  }
+  
+  & > svg {
+    margin-right : 2vw;
+    height: 19vh;
+    width: auto;
+    position: relative;
+    bottom: -1vh;
+  }
 
   h2 {
    font-size: 5vh;
@@ -58,11 +71,19 @@ export default class TitleSlide extends React.Component {
       <Slide bg="#ff686b">
         <Title>CodeDay</Title>
         <WifiInfo>
-          <h2><span><Icon.Wifi /> wifi</span></h2>
-          <ul>
-            <li><span>ssid</span> {config.ssid}</li>
-            <li><span>pass</span> {config.pass}</li>
-          </ul>
+          <QrCode
+            value={`WIFI:S:${config.ssid};T:${config.pass && 'WPA'};P:${config.pass};;`}
+            renderAs="svg"
+            bgColor="transparent"
+            fgColor="#fff"
+          />
+          <section>
+            <h2><span><Icon.Wifi /> wifi</span></h2>
+            <ul>
+              <li><span>ssid</span> {config.ssid}</li>
+              <li><span>pass</span> {config.pass || '(none)'}</li>
+            </ul>
+          </section>
         </WifiInfo>
       </Slide>
     );

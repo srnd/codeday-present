@@ -63,7 +63,6 @@ export default class Video extends React.Component {
             videoId={videoId}
             opts={opts}
             autoplay
-            onReady={(e) => setTimeout(() => e.target.playVideo(), 500)}
             onEnd={nextSlide}
           />
         </VideoWrapper>

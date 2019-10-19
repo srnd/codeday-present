@@ -1,5 +1,5 @@
+/* eslint-disable react/jsx-no-target-blank */
 import React from 'react';
-import Link from 'next/link';
 import Head from 'next/head';
 import { withRouter } from 'next/router';
 import PropTypes from 'prop-types';
@@ -29,10 +29,15 @@ export default withRouter(class Index extends React.Component {
         </Head>
         <h1>{event.name}: All Displays</h1>
         <ul>
-          <li><Link href={`/e/${event.id}/${router.query.config}/kickoff`}>Kickoff Full Deck</Link></li>
-          <li><Link href={`/e/${event.id}/${router.query.config}/videos`}>Kickoff Videos Only</Link></li>
-          <li><Link href={`/e/${event.id}/${router.query.config}/live`}>Live Schedule</Link></li>
-          { config.radio && <li><Link href={`/e/${event.id}/${router.query.config}/radio`}>Radio Player</Link></li> }
+          { config.radio && (
+            <li><a target="_blank" href={`/e/${event.id}/${router.query.config}/radio`}>Radio Player</a></li>
+          )}
+          <li>
+            <a target="_blank" href={`/e/${event.id}/${router.query.config}/kickoff`}>Kickoff Deck</a>
+            (or <a target="_blank" href={`/e/${event.id}/${router.query.config}/videos`}>Videos Only</a>)
+          </li>
+          <li><a target="_blank" href={`/e/${event.id}/${router.query.config}/live`}>Live Schedule</a></li>
+          <li><a target="_blank" href={`/e/${event.id}/${router.query.config}/awards`}>Awards Deck</a></li>
         </ul>
       </div>
     );

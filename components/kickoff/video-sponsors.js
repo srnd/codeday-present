@@ -15,7 +15,12 @@ const SponsorLogoOverlay = styled.div`
   top: 0;
   z-index: 1;
   text-align: center;
-  background: radial-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.35) 30%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0));
+  background: radial-gradient(
+    rgba(255, 255, 255, 0.6),
+    rgba(255, 255, 255, 0.35) 30%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0)
+  );
   opacity: ${({ backgroundMultiplier }) => backgroundMultiplier};
 
   img, svg {
@@ -111,7 +116,7 @@ export default class VideoSponsors extends React.Component {
     return [
       { audio: 'https://f1.srnd.org/sponsor-intro.mp3' },
       ...globalSponsors.filter((s) => s.audio),
-      {}
+      {},
     ];
   }
 
@@ -136,7 +141,12 @@ export default class VideoSponsors extends React.Component {
   }
 
   render() {
-    const { visibleSponsorIndex, play, error, backgroundMultiplier } = this.state;
+    const {
+      visibleSponsorIndex,
+      play,
+      error,
+      backgroundMultiplier,
+    } = this.state;
     const { volume } = this.props;
 
     const beeple = this.getBeeple();

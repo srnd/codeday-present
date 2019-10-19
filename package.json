@@ -25,6 +25,7 @@
     "react": "16.10.2",
     "react-dom": "16.10.2",
     "react-sound": "^1.2.0",
+    "react-typist-n10": "^2.0.4",
     "react-youtube": "^7.9.0",
     "styled-components": "^4.4.0",
     "superagent": "^5.1.0"

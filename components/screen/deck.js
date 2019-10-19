@@ -59,7 +59,8 @@ export default class Deck extends React.Component {
     const { children } = this.props;
     const { currentSlide } = this.state;
     const newSlide = currentSlide + amount;
-    const boundedNewSlide = Math.max(0, Math.min(newSlide, children.length - 1));
+    const allChildren = React.Children.map(children, (a) => a);
+    const boundedNewSlide = Math.max(0, Math.min(newSlide, allChildren.length - 1));
 
     this.setState({
       currentSlide: boundedNewSlide,
@@ -70,7 +71,9 @@ export default class Deck extends React.Component {
     const { children } = this.props;
     const { currentSlide, volume } = this.state;
 
-    const displaySlide = React.cloneElement(children[currentSlide], {
+    const allChildren = React.Children.map(children, (a) => a);
+
+    const displaySlide = React.cloneElement(allChildren[currentSlide], {
       ...this.props,
       volume,
       nextSlide: () => this.navigate(1),

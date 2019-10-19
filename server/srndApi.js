@@ -34,6 +34,15 @@ export default class EventInfoApi {
     }
   }
 
+  static async getCommunityPartners(event) {
+    const url = `https://micro.srnd.org/community-partners?region=${event.webname}`;
+    try {
+      return JSON.parse((await superagent.get(url)).text);
+    } catch (ex) {
+      return null;
+    }
+  }
+
   static getPrismicSeasonForEvent(event) {
     if (!event.batchDate) return null;
 

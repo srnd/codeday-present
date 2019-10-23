@@ -88,8 +88,14 @@ export default class Live extends React.Component {
     config: PropTypes.object.isRequired,
   }
 
+  componentDidMount() {
+    this.forceUpdate();
+  }
+
   render() {
     const { event, config } = this.props;
+    if (typeof window === 'undefined') return null;
+
     return (
       <Slide padding="0">
         <Head>

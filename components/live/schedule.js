@@ -14,6 +14,8 @@ export const EventTitle = styled.span``;
 export const EventTime = styled.span``;
 export const Placeholder = styled.span``;
 const Section = styled.div`
+  margin-bottom: 4vh;
+
   ${EventTitle}, ${EventTime} {
     display: block;
     white-space:nowrap

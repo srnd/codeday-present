@@ -6,9 +6,12 @@ const PostContainer = styled.div`
   display: block;
   border: 1px solid #ccc;
   height: 30vh;
-  width: 47%;
+  width: 48%;
   display: inline-block;
-  margin: 0 2% 1vh 0;
+  margin: 0 2% 2vh 0;
+  &:nth-child(2n) {
+    margin-right: 0;
+  }
   overflow: hidden;
   padding: 2vh;
   box-sizing: border-box;

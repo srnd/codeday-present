@@ -16,10 +16,10 @@ const ScheduleBox = styled.div`
   position: absolute;
   left: 0;
   top: 0;
-  bottom: 20vh;
+  bottom: 23vh;
   overflow: hidden;
   width: ${leftWidth}vw;
-  padding:5vh 5vw;
+  padding: 3vh 3vw;
   box-sizing: border-box;
 
   &:before {
@@ -50,9 +50,9 @@ const RadioBox = styled.div`
   background-color: #ff686b;
   left: 0;
   bottom: 0;
-  height: 20vh;
+  height: 23vh;
   width: ${leftWidth}vw;
-  padding: 1vh 5vw 5vh 5vw;
+  padding: 5vh 3vw 3vh 3vw;
   box-sizing: border-box;
 `;
 
@@ -62,7 +62,7 @@ const SocialBox = styled.div`
   top: 0;
   bottom: 5vh;
   right: 0;
-  padding: 5vh 5vw 0 2vw;
+  padding: 3vh 3vw 0 2vw;
   box-sizing: border-box;
   overflow: hidden;
 

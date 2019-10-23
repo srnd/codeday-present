@@ -1,13 +1,15 @@
 module.exports = {
   webpack: (config, { isServer }) => {
-    // Fixes npm packages that depend on `fs` module
     if (!isServer) {
+      // Fixes npm packages that depend on `fs` module
+      // eslint-disable-next-line no-param-reassign
       config.node = {
         fs: 'empty',
-        dotenv: 'empty'
-      }
+        dotenv: 'empty',
+      };
     }
 
-    return config
-  }, port: 8001
-}
+    return config;
+  },
+  port: 8001,
+};

@@ -25,7 +25,7 @@ export default class Deck extends React.Component {
   }
 
   state = {
-    currentSlide: 0,
+    currentSlide: -1,
     volume: 100,
   }
 
@@ -38,6 +38,7 @@ export default class Deck extends React.Component {
   componentDidMount() {
     if (typeof window !== 'undefined') {
       document.addEventListener('keydown', this.onKeyDown);
+      this.setState({ currentSlide: 0 });
     }
   }
 
@@ -71,8 +72,9 @@ export default class Deck extends React.Component {
     const { children } = this.props;
     const { currentSlide, volume } = this.state;
 
-    const allChildren = React.Children.map(children, (a) => a);
+    if (currentSlide < 0) return null;
 
+    const allChildren = React.Children.map(children, (a) => a);
     const displaySlide = React.cloneElement(allChildren[currentSlide], {
       ...this.props,
       volume,

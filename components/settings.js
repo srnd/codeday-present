@@ -16,6 +16,7 @@ export default class Settings extends React.Component {
     this.state = {
       ssid: '',
       pass: '',
+      timeFormat: 'h:mm',
       radio: true,
       hashtag: props.event.webname,
     };
@@ -38,6 +39,7 @@ export default class Settings extends React.Component {
       pass,
       radio,
       hashtag,
+      timeFormat,
     } = this.state;
 
     return (
@@ -49,6 +51,13 @@ export default class Settings extends React.Component {
         <br />
         <span>Password:</span>
         <input type="text" value={pass} onChange={(e) => this.changeCode({ pass: e.target.value })} />
+
+        <h2>Time Format</h2>
+        <p>Choose whichever students are most likely to be familiar with (not your personal preference).</p>
+        <select onChange={(e) => this.changeCode({ timeFormat: e.target.value })}>
+          <option value="h:mm" selected={timeFormat === 'h:mm'}>12-hour</option>
+          <option value="H:mm" selected={timeFormat === 'H:mm'}>24-hour</option>
+        </select>
 
         <h2>CodeDay Radio</h2>
         <p>

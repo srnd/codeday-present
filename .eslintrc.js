@@ -10,5 +10,6 @@ module.exports = {
       'react/jsx-props-no-spreading': ['off'],
       'react/jsx-one-expression-per-line': ['off'],
       'react/state-in-constructor': ['off'],
+      'class-methods-use-this': ['off'],
     }
 };

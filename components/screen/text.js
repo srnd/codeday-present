@@ -33,3 +33,9 @@ export const Large = styled(Text)`
   font-size: 6vh;
   font-weight: 700;
 `;
+
+export const BgSectionText = styled.h2`
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 2vh;
+  margin-bottom: 1vh;
+`;

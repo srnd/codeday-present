@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-no-target-blank */
 import React from 'react';
 import Head from 'next/head';
+import Link from 'next/link';
 import { withRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -38,8 +39,14 @@ export default withRouter(class Index extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.forceUpdate();
+  }
+
   render() {
     const { event, config, router } = this.props;
+    if (typeof window === 'undefined') return null;
+
     return (
       <div>
         <Head>
@@ -98,6 +105,17 @@ export default withRouter(class Index extends React.Component {
             >
               Awards Deck
             </ColorLink>
+          </li>
+          <li>
+            <Link href={`/e/${event.id}`}>
+              <ColorLink
+                bg="#ccc"
+                fg="#000"
+                href="#"
+              >
+                Change Settings
+              </ColorLink>
+            </Link>
           </li>
         </ColorList>
       </div>

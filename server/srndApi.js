@@ -58,6 +58,15 @@ export default class EventInfoApi {
     return `${date[0]}-${season}`;
   }
 
+  static async getAllEvents() {
+    const url = `https://www.codeday.org/index.json`;
+    try {
+      return JSON.parse((await superagent.get(url)).text);
+    } catch (ex) {
+      return [];
+    }
+  }
+
   static async getClear(eventId) {
     const clearPub = await config.get('CLEAR_PUBLIC');
     const clearPriv = await config.get('CLEAR_PRIVATE');

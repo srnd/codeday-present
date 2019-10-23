@@ -55,7 +55,7 @@ export default class Settings extends React.Component {
         <h2>Time Format</h2>
         <p>Choose whichever students are most likely to be familiar with (not your personal preference).</p>
         <select onChange={(e) => this.changeCode({ timeFormat: e.target.value })}>
-          <option value="h:mm" selected={timeFormat === 'h:mm'}>12-hour</option>
+          <option value="h:mma" selected={timeFormat === 'h:mma'}>12-hour</option>
           <option value="H:mm" selected={timeFormat === 'H:mm'}>24-hour</option>
         </select>
 

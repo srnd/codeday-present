@@ -16,7 +16,7 @@ export default class Settings extends React.Component {
     this.state = {
       ssid: '',
       pass: '',
-      timeFormat: 'h:mm',
+      timeFormat: 'h:mma',
       radio: true,
       hashtag: props.event.webname,
     };

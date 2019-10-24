@@ -23,6 +23,7 @@
     "qrcode.react": "^0.9.3",
     "random-seed": "^0.3.0",
     "react": "16.10.2",
+    "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "16.10.2",
     "react-sound": "^1.2.0",
     "react-typist-n10": "^2.0.4",

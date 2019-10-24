@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import superagent from 'superagent';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 const PostContainer = styled.div`
   display: block;
@@ -15,6 +16,17 @@ const PostContainer = styled.div`
   overflow: hidden;
   padding: 2vh;
   box-sizing: border-box;
+
+  &.social-post-enter, &.social-post-leave.social-post-leave-active {
+    opacity: 0;
+    max-width: 0;
+  }
+
+  &.social-post-enter.social-post-enter-active, &.social-post-leave {
+    opacity: 1;
+    transition: all .5s ease-in;
+    max-width: 50%;
+  }
 `;
 
 const PostContent = styled.div`
@@ -72,9 +84,15 @@ export default class Social extends React.Component {
     const { posts } = this.state;
 
     return (
-      <div>
+      <ReactCSSTransitionGroup
+        transitionName="social-post"
+        transitionAppear
+        transitionAppearTimeout={500}
+        transitionEnterTimeout={500}
+        transitionLeaveTimeout={500}
+      >
         {posts.map((post) => (
-          <PostContainer>
+          <PostContainer key={post.id}>
             {post.media_url && <PostMedia style={{ backgroundImage: `url(${post.media_url})` }} /> }
             <PostContent>
               <PostAuthor>
@@ -84,7 +102,7 @@ export default class Social extends React.Component {
             </PostContent>
           </PostContainer>
         ))}
-      </div>
+      </ReactCSSTransitionGroup>
     );
   }
 }

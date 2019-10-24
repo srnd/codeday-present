@@ -3,12 +3,23 @@ import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import memoize from 'memoize-one';
 import moment from 'moment-timezone';
-
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { BgSectionText } from '../screen/text';
-
 
 export const EventBox = styled.div`
   margin-bottom: 1vh;
+  overflow: hidden;
+
+  &.schedule-event-enter, &.schedule-event-leave.schedule-event-leave-active {
+    opacity: 0;
+    max-height: 0;
+  }
+
+  &.schedule-event-enter.schedule-event-enter-active, &.schedule-event-leave {
+    opacity: 1;
+    transition: all 0.5s ease-in;
+    max-height: 4em;
+  }
 `;
 export const EventTitle = styled.span``;
 export const EventTime = styled.span``;
@@ -100,29 +111,36 @@ export default class Provider extends React.Component {
 
   drawSchedule(toDraw) {
     const { config } = this.props;
+    let content = [];
 
-    if (!toDraw) {
-      return (
-        <div>
+    if (toDraw) {
+      content = toDraw.map((event) => (
+        <EventBox key={`${event.title} ${event.moment.format()}`}>
+          <EventTitle>{event.title}</EventTitle>
+          <EventTime>{event.moment.format(config.timeFormat)} ({event.moment.fromNow()})</EventTime>
+        </EventBox>
+      ));
+    } else {
+      content = [(
+        <EventBox key="placeholder">
           <Placeholder>
-            <EventBox>
-              <EventTitle>Nothing</EventTitle>
-              <EventTime>Now</EventTime>
-            </EventBox>
+            <EventTitle>Nothing</EventTitle>
+            <EventTime>Now</EventTime>
           </Placeholder>
-        </div>
-      );
+        </EventBox>
+      )];
     }
 
     return (
-      <div>
-        {toDraw.map((event) => (
-          <EventBox>
-            <EventTitle>{event.title}</EventTitle>
-            <EventTime>{event.moment.format(config.timeFormat)} ({event.moment.fromNow()})</EventTime>
-          </EventBox>
-        ))}
-      </div>
+      <ReactCSSTransitionGroup
+        transitionName="schedule-event"
+        transitionAppear
+        transitionAppearTimeout={500}
+        transitionEnterTimeout={500}
+        transitionLeaveTimeout={500}
+      >
+        {content}
+      </ReactCSSTransitionGroup>
     );
   }
 

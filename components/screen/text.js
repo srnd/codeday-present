@@ -39,3 +39,11 @@ export const BgSectionText = styled.h2`
   font-size: 2vh;
   margin-bottom: 1vh;
 `;
+
+export const Cite = styled.div`
+  position: absolute;
+  left: 5vw;
+  bottom: 5vh;
+  font-size: 2vh;
+  opacity: 0.4;
+`;

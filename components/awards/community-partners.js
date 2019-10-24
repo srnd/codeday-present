@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Slide } from '../screen';
-import { Title } from '../screen/text';
+import { Title, Cite } from '../screen/text';
 
 const PartnerBox = styled.div`
   height: 30vh;
@@ -41,7 +41,7 @@ export default class CommunityPartners extends React.Component {
     return (
       <Slide>
         <Title>What&apos;s next for you? Some local ideas:</Title>
-        {communityPartners.map((partner) => (
+        {communityPartners.map((partner) => partner && partner.logo && (
           <PartnerBox>
             <PartnerLogo style={{ backgroundImage: `url(${partner.logo.large.url})` }} />
             <PartnerInfo>
@@ -50,6 +50,7 @@ export default class CommunityPartners extends React.Component {
             </PartnerInfo>
           </PartnerBox>
         ))}
+        <Cite>(We are not associated with any of these organizations.)</Cite>
       </Slide>
     );
   }

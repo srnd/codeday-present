@@ -43,6 +43,15 @@ export default class EventInfoApi {
     }
   }
 
+  static async getHackathons(event) {
+    const url = `https://micro.srnd.org/hackathons?region=${event.webname}`;
+    try {
+      return JSON.parse((await superagent.get(url)).text);
+    } catch (ex) {
+      return null;
+    }
+  }
+
   static getPrismicSeasonForEvent(event) {
     if (!event.batchDate) return null;
 

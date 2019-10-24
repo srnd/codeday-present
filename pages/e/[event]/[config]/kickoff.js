@@ -26,14 +26,18 @@ export default withRouter(class Index extends React.Component {
   }
 
   static async getInitialProps(router) {
-    const result = {
-      event: await Srnd.getEventInfo(router.query.event),
-      globalSponsors: await Srnd.getGlobalSponsors(),
+    const [event, globalSponsors] = await Promise.all([
+      Srnd.getEventInfo(router.query.event),
+      Srnd.getGlobalSponsors(),
+    ]);
+    const communityPartners = await Srnd.getCommunityPartners(event);
+
+    return {
+      event,
+      globalSponsors,
+      communityPartners,
       config: parseCode(router.query.config),
     };
-    result.communityPartners = await Srnd.getCommunityPartners(result.event);
-
-    return result;
   }
 
   render() {

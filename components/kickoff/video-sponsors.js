@@ -96,7 +96,6 @@ export default class VideoSponsors extends React.Component {
     const beepleSrc = 'https://f1.srnd.org/beeple';
     const beepleAvailable = [
       'moonvirus',
-      'base-10',
       'strt',
       'xannn',
       '24k',

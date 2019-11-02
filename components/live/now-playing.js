@@ -1,6 +1,7 @@
 import React from 'react';
 import superagent from 'superagent';
 import styled from 'styled-components';
+import FlipFlop from '../screen/flipflop';
 import { BgSectionText } from '../screen/text';
 
 const NowPlayingBlock = styled.div`
@@ -29,6 +30,12 @@ const NowPlayingSong = styled.div`
 `;
 
 const NowPlayingArtist = styled.div`
+  font-size: 2vh;
+  color: #fff;
+`;
+
+const HowTo = styled.div`
+  clear: both;
   font-size: 2vh;
   color: #fff;
 `;
@@ -63,11 +70,19 @@ export default class NowPlaying extends React.Component {
     return (
       <NowPlayingBlock>
         <BgSectionText>Now Playing</BgSectionText>
-        <NowPlayingAlbum>
-          {nowPlaying && <img src={nowPlaying.image} alt="" />}
-        </NowPlayingAlbum>
-        <NowPlayingSong>{nowPlaying ? nowPlaying.title : 'Nothing'}</NowPlayingSong>
-        <NowPlayingArtist>{nowPlaying ? nowPlaying.artist : 'No One'}</NowPlayingArtist>
+        <FlipFlop interval={20000}>
+          <div>
+            <NowPlayingAlbum>
+              {nowPlaying && <img src={nowPlaying.image} alt="" />}
+            </NowPlayingAlbum>
+            <NowPlayingSong>{nowPlaying ? nowPlaying.title : 'Nothing'}</NowPlayingSong>
+            <NowPlayingArtist>{nowPlaying ? nowPlaying.artist : 'No One'}</NowPlayingArtist>
+          </div>
+          <div>
+            <NowPlayingSong>@DjJohnPeter</NowPlayingSong>
+            <NowPlayingArtist>Tweet me a song name to queue it.</NowPlayingArtist>
+          </div>
+        </FlipFlop>
       </NowPlayingBlock>
     );
   }

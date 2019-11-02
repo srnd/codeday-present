@@ -89,7 +89,7 @@ export default class EventInfoApi {
         regionName: data.region_name,
         batchName: data.batch.name,
         batchDate: data.batch.starts_at,
-        venueName: data.venue.name,
+        venueName: data.venue && data.venue.name,
         startsAt: data.starts_at,
         endsAt: data.ends_at,
         tz: data.timezone,

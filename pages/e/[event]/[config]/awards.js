@@ -36,7 +36,7 @@ export default withRouter(class Index extends React.Component {
   }
 
   groupsOf(items, groupSize) {
-    if (items.length === 0) return [];
+    if (!items || items.length === 0) return [];
     const out = [[]];
     items.forEach((item) => {
       if (out[out.length - 1].length >= groupSize) {

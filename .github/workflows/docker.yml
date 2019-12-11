@@ -11,5 +11,5 @@ jobs:
         name: srnd/codeday-present/codeday-present
         registry: docker.pkg.github.com
         tag_names: true
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}

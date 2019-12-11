@@ -8,7 +8,7 @@ jobs:
     - name: Publish to Registry
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
-        name: srnd/codeday-present
+        name: srnd/codeday-present/codeday-present
         registry: docker.pkg.github.com
         tag_names: true
         username: ${{ secrets.DOCKER_USERNAME }}

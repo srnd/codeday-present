@@ -4,9 +4,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: jerray/publish-docker-action@master
+    - uses: actions/checkout@master
+    - name: Publish to Registry
+      uses: elgohr/Publish-Docker-Github-Action@master
       with:
+        name: srnd/codeday-present
+        registry: docker.pkg.github.com
+        tag_names: true
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-        registry: docker.pkg.github.com
-        auto_tag: true

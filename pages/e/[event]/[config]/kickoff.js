@@ -15,6 +15,7 @@ import {
   Schedule,
   Sponsors,
   Pitches,
+  Theme,
 } from '../../../../components/kickoff';
 
 export default withRouter(class Index extends React.Component {
@@ -58,6 +59,7 @@ export default withRouter(class Index extends React.Component {
           <Video />
           <VideoSponsors />
           <CreateCode />
+          {event.theme ? <Theme /> : null}
           <Judging />
           <Conduct />
           <Schedule />

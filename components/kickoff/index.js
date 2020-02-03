@@ -8,6 +8,7 @@ import Sponsors from './sponsors';
 import Pitches from './pitches';
 import Judging from './judging';
 import Black from './black';
+import Theme from './theme';
 
 export {
   Title,
@@ -20,4 +21,5 @@ export {
   Sponsors,
   Pitches,
   Black,
+  Theme,
 };

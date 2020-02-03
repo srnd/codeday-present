@@ -74,7 +74,7 @@ export default class Deck extends React.Component {
 
     if (currentSlide < 0) return null;
 
-    const allChildren = React.Children.map(children, (a) => a);
+    const allChildren = React.Children.map(children, (a) => a).filter((a) => a);
     const displaySlide = React.cloneElement(allChildren[currentSlide], {
       ...this.props,
       volume,

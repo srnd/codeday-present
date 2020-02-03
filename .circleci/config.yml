@@ -1,6 +1,7 @@
 version: 2.1
 jobs:
   build:
+    context: Docker Hub
     docker:
       - image: circleci/node:latest
     steps:

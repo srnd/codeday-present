@@ -73,7 +73,7 @@ export default class Settings extends React.Component {
         <h2>Additional Slides</h2>
         <p>
           You can define additional slides to be inserted in the kickoff, after the schedule and before the local
-          sponsors. Separate slides with a new line with four dashes (----). You can use Markdown.
+          sponsors. Separate slides with a new line with exactly four dashes (----). You can use Markdown.
         </p>
         <textarea
           style={{ width: '60rem', height: '10rem' }}

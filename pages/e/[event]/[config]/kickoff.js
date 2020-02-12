@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import { withRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import marky from 'marky-markdown';
+import markdown from 'markdown-it';
 import Srnd from '../../../../server/srndApi';
 import { parseCode } from '../../../../components/settings';
 import Deck from '../../../../components/screen/deck';
@@ -37,7 +37,7 @@ export default withRouter(class Index extends React.Component {
     const config = parseCode(router.query.config);
     const additionalSlides = config.additionalSlides ? config.additionalSlides
       .split("\n----\n")
-      .map((md) => marky(md, { enableHeadingLinkIcons: false }))
+      .map((md) => markdown().render(md))
       : null;
 
     return {

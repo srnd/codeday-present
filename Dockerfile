@@ -1,9 +1,12 @@
-FROM node:slim
+FROM node:13-alpine
 
 ENV NODE_ENV=production
-COPY . /www
+RUN mkdir /www
+COPY package.* /www
 WORKDIR /www
-RUN npm i
-RUN npm run build
 
+RUN npm i
+
+COPY . /www
+RUN npm run build
 CMD npm run start

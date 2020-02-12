@@ -2,6 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import { withRouter } from 'next/router';
 import PropTypes from 'prop-types';
+import marky from 'marky-markdown';
 import Srnd from '../../../../server/srndApi';
 import { parseCode } from '../../../../components/settings';
 import Deck from '../../../../components/screen/deck';
@@ -16,6 +17,7 @@ import {
   Sponsors,
   Pitches,
   Theme,
+  CustomSlide,
 } from '../../../../components/kickoff';
 
 export default withRouter(class Index extends React.Component {
@@ -32,12 +34,18 @@ export default withRouter(class Index extends React.Component {
       Srnd.getGlobalSponsors(),
     ]);
     const communityPartners = await Srnd.getCommunityPartners(event);
+    const config = parseCode(router.query.config);
+    const additionalSlides = config.additionalSlides ? config.additionalSlides
+      .split("\n----\n")
+      .map((md) => marky(md, { enableHeadingLinkIcons: false }))
+      : null;
 
     return {
       event,
       globalSponsors,
       communityPartners,
-      config: parseCode(router.query.config),
+      config,
+      additionalSlides,
     };
   }
 
@@ -47,6 +55,7 @@ export default withRouter(class Index extends React.Component {
       config,
       globalSponsors,
       communityPartners,
+      additionalSlides,
     } = this.props;
 
     return (
@@ -63,6 +72,7 @@ export default withRouter(class Index extends React.Component {
           <Judging />
           <Conduct />
           <Schedule />
+          { additionalSlides ? additionalSlides.map(slide => <CustomSlide content={slide} />) : null }
           <Sponsors />
           <Pitches />
         </Deck>

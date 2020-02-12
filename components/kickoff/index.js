@@ -9,6 +9,7 @@ import Pitches from './pitches';
 import Judging from './judging';
 import Black from './black';
 import Theme from './theme';
+import CustomSlide from './custom-slide';
 
 export {
   Title,
@@ -22,4 +23,5 @@ export {
   Pitches,
   Black,
   Theme,
+  CustomSlide,
 };

@@ -19,6 +19,7 @@ export default class Settings extends React.Component {
       timeFormat: 'h:mma',
       radio: true,
       hashtag: props.event.webname,
+      additionalSlides: null,
     };
   }
 
@@ -68,6 +69,18 @@ export default class Settings extends React.Component {
           <option selected={radio} value="true">Yes, I plan to play CodeDay Radio</option>
           <option selected={!radio} value="false">No, opt me out of CodeDay Radio</option>
         </select>
+
+        <h2>Additional Slides</h2>
+        <p>
+          You can define additional slides to be inserted in the kickoff, after the schedule and before the local
+          sponsors. Separate slides with a new line with four dashes (----). You can use Markdown.
+        </p>
+        <textarea
+          style={{ width: '60rem', height: '10rem' }}
+          onChange={(e) => this.changeCode({ additionalSlides: e.target.value })}
+        >{
+          this.state.additionalSlides
+        }</textarea>
 
         <h2>Social</h2>
         <p>If you want to customize your event&apos;s hashtag, do so here.</p>

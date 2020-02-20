@@ -8,6 +8,7 @@ import Deck from '../../../../components/screen/deck';
 import {
   Video,
   VideoSponsors,
+  Theme,
   Black,
 } from '../../../../components/kickoff';
 
@@ -35,10 +36,9 @@ export default withRouter(class Index extends React.Component {
           <title>{`${event.name} Videos`}</title>
         </Head>
         <Deck event={event} config={config} globalSponsors={globalSponsors}>
-          <Black />
-          <Video />
-          <VideoSponsors />
-          <Black />
+          {event.kickoffVideo ? <Video /> : null}
+          {globalSponsors && globalSponsors.filter((s) => s.audio).length > 0 ? <VideoSponsors /> : null }
+          {event.theme ? <Theme /> : null}
         </Deck>
       </div>
     );

@@ -33,15 +33,15 @@ const SponsorLogoOverlay = styled.div`
 
 const BackgroundVideo = styled.video`
   position: absolute;
-  top: 50%; 
+  top: 50%;
   left: 50%;
   -webkit-transform: translateX(-50%) translateY(-50%);
   transform: translateX(-50%) translateY(-50%);
-  min-width: 100%; 
-  min-height: 100%; 
-  width: auto; 
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
   height: auto;
-  z-index: 0; 
+  z-index: 0;
   overflow: hidden;
   opacity: ${({ backgroundMultiplier }) => backgroundMultiplier};
 `;
@@ -101,7 +101,7 @@ export default class VideoSponsors extends React.Component {
       '24k',
       'fiber-optical',
     ];
-    const beeple = beepleAvailable[rand(event.batchName).intBetween(0, beepleAvailable.length)];
+    const beeple = beepleAvailable[rand(event.batchName).intBetween(0, beepleAvailable.length-1)];
     return {
       img: `${beepleSrc}/${beeple}.jpg`,
       vid: `${beepleSrc}/${beeple}.mp4`,
@@ -177,7 +177,7 @@ export default class VideoSponsors extends React.Component {
         <Sound
           url={beeple.mus}
           loop
-          volume={Math.max(1, Math.ceil(volume * 0.05)) * backgroundMultiplier}
+          volume={Math.max(1, Math.ceil(volume * 0.07)) * backgroundMultiplier}
           playStatus={play ? Sound.status.PLAYING : Sound.status.STOPPED}
         />
       </Slide>

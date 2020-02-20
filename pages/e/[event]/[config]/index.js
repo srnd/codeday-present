@@ -60,7 +60,7 @@ export default withRouter(class Index extends React.Component {
                 target="_blank"
                 bg="#B33739"
                 fg="#fff"
-                href={`/e/${event.id}/${router.query.config}/radio`}
+                href={`/radio`}
               >
                 Radio Player
               </ColorLink>

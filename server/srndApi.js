@@ -110,7 +110,7 @@ export default class EventInfoApi {
     });
 
     try {
-      const resp = await client.query({
+      const { theme, theme_images: themeImages, kickoffvideo: kickoffVideo } = (await client.query({
         query: gql`
           query {
             season(uid: "${season}", lang: "en-us") {
@@ -121,12 +121,12 @@ export default class EventInfoApi {
               }
           }
         }`,
-      });
+      })).data.season;
 
       return {
-        kickoffVideo: resp.data.season.kickoffvideo.embed_url,
-        theme: resp.data.season.theme,
-        themeImages: resp.data.season.theme_images.map(i => i.image.url),
+        kickoffVideo: kickoffVideo ? kickoffVideo.embed_url : null,
+        theme,
+        themeImages: themeImages.map(i => i.image.url),
        };
     } catch (ex) {
       return {};

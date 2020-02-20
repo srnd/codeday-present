@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Slide } from '../screen';
 import { Title } from '../screen/text';
 import Schedule from './schedule';
-import NowPlaying from './now-playing';
+import NowPlaying from '../now-playing';
 import Social from './social';
 
 const leftWidth = 30;
@@ -105,7 +105,7 @@ export default class Live extends React.Component {
           <Schedule event={event} config={config} />
         </ScheduleBox>
         <RadioBox>
-          {config.radio && <NowPlaying />}
+          {config.radio && <NowPlaying align="left" />}
         </RadioBox>
         <SocialBox>
           <Title>#codeday #{config.hashtag}</Title>

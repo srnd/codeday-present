@@ -4,12 +4,19 @@ import styled from 'styled-components';
 import Icon from '@srnd/topocons';
 import QrCode from 'qrcode.react';
 import { Slide } from '../screen';
+import NowPlaying from '../now-playing';
 
 const Title = styled.div`
   text-align: center;
   font-size: 20vh;
   margin-top: 20vh;
   color: #fff;
+`;
+
+const NowPlayingInfo = styled.div`
+  position: absolute;
+  right: 5vw;
+  bottom: 6vh;
 `;
 
 const WifiInfo = styled.div`
@@ -21,7 +28,7 @@ const WifiInfo = styled.div`
   section, & > svg {
     display: inline-block;
   }
-  
+
   & > svg {
     margin-right : 2vw;
     height: 19vh;
@@ -86,6 +93,7 @@ export default class TitleSlide extends React.Component {
             </ul>
           </section>
         </WifiInfo>
+        {config.radio && <NowPlayingInfo><NowPlaying align="right" /></NowPlayingInfo>}
       </Slide>
     );
   }
